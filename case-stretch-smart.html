@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>StretchSmart — Case Study · Zubeir Hussein</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #f3f4f6;
+    --bg-2: #e9ebef;
+    --ink: #18181b;
+    --ink-2: #52525b;
+    --ink-3: #9ca3af;
+    --line: #dfe2e8;
+    --accent: #b8633f;
+    --accent-2: #2d5f5d;
+    --accent-3: #c79a6a;
+    --accent-soft: #e7e9ed;
+    --serif: "Geist", -apple-system, system-ui, sans-serif;
+    --sans: "Geist", -apple-system, system-ui, sans-serif;
+    --mono: "Geist Mono", ui-monospace, monospace;
+    --maxw: 1080px;
+    --readw: 680px;
+    --pad: 40px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  .label { font-size: 12px; color: var(--accent-2); letter-spacing: 0.02em; font-weight: 500; }
+
+  /* Nav */
+  .nav { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px); background: color-mix(in oklab, var(--bg) 82%, transparent); border-bottom: 1px solid var(--line); }
+  .nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 18px var(--pad); display: flex; justify-content: space-between; align-items: center; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: var(--sans); font-size: 15px; font-weight: 500; text-decoration: none; letter-spacing: -0.015em; }
+  .brand-mark { width: 26px; height: 26px; border-radius: 7px; background: var(--accent); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: -0.015em; box-shadow: 0 1px 0 rgba(0,0,0,0.04), inset 0 -1px 0 rgba(0,0,0,0.08); }
+  .back { font-size: 14px; color: var(--ink-2); text-decoration: none; transition: color 0.2s; }
+  .back:hover { color: var(--ink); }
+
+  /* Header */
+  .study-header { max-width: var(--maxw); margin: 0 auto; padding: 80px var(--pad) 56px; }
+  .crumb { display: flex; gap: 12px; align-items: center; margin-bottom: 28px; }
+  .crumb span { font-size: 12px; color: var(--ink-3); }
+  .crumb .sep { color: var(--ink-3); opacity: 0.5; }
+  .study-title {
+    font-family: var(--sans); font-weight: 400;
+    font-size: clamp(48px, 7.5vw, 96px);
+    line-height: 0.98; letter-spacing: -0.04em;
+    margin-bottom: 24px; max-width: 14ch;
+  }
+  .study-title em { font-style: normal; color: var(--accent); font-weight: 400; background: linear-gradient(90deg, var(--accent) 0%, color-mix(in oklab, var(--accent) 70%, var(--accent-2)) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .study-deck {
+    font-size: 19px; line-height: 1.55; color: var(--ink-2);
+    max-width: 56ch;
+  }
+  .visit-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; font-size: 14px; font-weight: 500; color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 2px; text-decoration: none; transition: color 0.2s, border-color 0.2s; }
+  .visit-link:hover { color: var(--accent); border-color: var(--accent); }
+
+  .study-meta { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad) 56px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; border-bottom: 1px solid var(--line); }
+  .meta-item .k { display: block; margin-bottom: 6px; font-size: 12px; color: var(--ink-3); font-weight: 500; }
+  .meta-item .v { font-size: 15px; color: var(--ink); }
+
+  /* Hero visual */
+  .hero-visual { max-width: var(--maxw); margin: 56px auto 0; padding: 0 var(--pad); }
+  .visual-card {
+    background: linear-gradient(135deg, color-mix(in oklab, var(--accent) 10%, var(--bg-2)) 0%, color-mix(in oklab, var(--accent-2) 7%, var(--bg)) 100%);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 64px 48px;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; gap: 28px;
+    align-items: center; text-align: center;
+  }
+  .visual-card::before {
+    content: ""; position: absolute; top: -30%; right: -10%;
+    width: 60%; height: 120%; border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in oklab, var(--accent) 22%, transparent), transparent 65%);
+    pointer-events: none;
+  }
+  .visual-card::after {
+    content: ""; position: absolute; bottom: -40%; left: -10%;
+    width: 50%; height: 100%; border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in oklab, var(--accent-2) 18%, transparent), transparent 60%);
+    pointer-events: none;
+  }
+  .visual-card > * { position: relative; z-index: 1; }
+  .visual-card .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid color-mix(in oklab, var(--accent-2) 25%, var(--line));
+    background: var(--bg);
+    border-radius: 999px; padding: 7px 14px;
+    font-size: 13px; color: var(--accent-2);
+  }
+  .visual-card .eyebrow .leaf { color: var(--accent); }
+  .visual-card h2 {
+    font-family: var(--sans); font-weight: 400;
+    font-size: clamp(40px, 6.5vw, 72px);
+    line-height: 1.0; letter-spacing: -0.04em;
+  }
+  .visual-card h2 em { font-style: normal; color: var(--accent); font-weight: 400; background: linear-gradient(90deg, var(--accent) 0%, color-mix(in oklab, var(--accent) 70%, var(--accent-2)) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .visual-card .tagline { color: var(--ink-2); font-size: 17px; max-width: 48ch; }
+
+  /* Split hero with real screenshot */
+  .visual-card--split {
+    flex-direction: row; text-align: left;
+    align-items: center; justify-content: space-between;
+    gap: 48px; padding: 56px 56px 0;
+  }
+  .visual-card--split .visual-copy { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; padding-bottom: 56px; flex: 1; }
+  .visual-card--split .tagline { font-size: 18px; }
+  .visual-shot { flex-shrink: 0; align-self: flex-end; position: relative; z-index: 1; }
+  .visual-shot img {
+    width: 260px; height: auto; display: block;
+    border-radius: 18px 18px 0 0;
+    filter: drop-shadow(0 24px 48px rgba(0,0,0,0.16));
+    mix-blend-mode: multiply;
+  }
+
+  /* App showcase gallery */
+  .showcase { max-width: var(--maxw); margin: 0 auto; padding: 24px var(--pad) 0; }
+  .showcase-panel {
+    background: linear-gradient(160deg, color-mix(in oklab, var(--accent) 7%, var(--bg-2)) 0%, color-mix(in oklab, var(--accent-2) 6%, var(--bg)) 100%);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 44px;
+    position: relative; overflow: hidden;
+  }
+  .showcase-panel::before {
+    content: ""; position: absolute; top: -30%; left: -10%;
+    width: 50%; height: 120%; border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in oklab, var(--accent) 14%, transparent), transparent 65%);
+    pointer-events: none;
+  }
+  .showcase-head { position: relative; z-index: 1; margin-bottom: 32px; max-width: 52ch; }
+  .showcase-head .label { color: var(--accent-2); margin-bottom: 12px; display: block; }
+  .showcase-head h3 { font-family: var(--sans); font-weight: 400; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 12px; }
+  .showcase-head h3 em { font-style: normal; color: var(--accent); }
+  .showcase-head p { font-size: 16px; color: var(--ink-2); line-height: 1.55; }
+  .showcase-row { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: end; }
+  .shot-item { display: flex; flex-direction: column; gap: 14px; }
+  .shot-frame {
+    border-radius: 30px; overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  }
+  .shot-frame.framed { background: transparent; border: 0; box-shadow: none; }
+  .shot-frame.framed img { mix-blend-mode: multiply; filter: drop-shadow(0 16px 32px rgba(0,0,0,0.12)); border-radius: 0; }
+  .shot-frame img { width: 100%; height: auto; display: block; }
+  .shot-cap { display: flex; flex-direction: column; gap: 2px; padding: 0 4px; }
+  .shot-cap .n { font-size: 11px; color: var(--accent-2); font-weight: 500; font-family: var(--mono); letter-spacing: 0.04em; }
+  .shot-cap .t { font-size: 14px; color: var(--ink); }
+
+  /* Body */
+  .body { max-width: var(--maxw); margin: 0 auto; padding: 80px var(--pad); }
+  .section { display: grid; grid-template-columns: 180px 1fr; gap: 48px; padding: 48px 0; border-top: 1px solid var(--line); }
+  .section:first-child { border-top: 0; padding-top: 0; }
+  .section .label { padding-top: 8px; }
+  .section h2 { font-family: var(--sans); font-weight: 400; font-size: clamp(28px, 3.6vw, 40px); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 20px; max-width: 18ch; }
+  .section h2 em { font-style: normal; color: var(--accent); font-weight: 400; }
+  .section p { font-size: 17px; color: var(--ink-2); max-width: var(--readw); margin-bottom: 16px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--ink); font-weight: 500; }
+  .section blockquote {
+    font-family: var(--sans); font-style: normal; font-weight: 400;
+    font-size: clamp(19px, 2.2vw, 24px); line-height: 1.35;
+    letter-spacing: -0.015em;
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 24px;
+    margin: 24px 0;
+    color: var(--ink);
+    max-width: var(--readw);
+  }
+  .section blockquote cite { display: block; font-style: normal; font-family: var(--sans); font-size: 13px; color: var(--ink-3); margin-top: 10px; font-weight: 400; }
+
+  /* Pretty list */
+  .pretty-list { list-style: none; padding: 0; margin: 16px 0 0; max-width: var(--readw); }
+  .pretty-list li {
+    padding: 18px 0; border-top: 1px solid var(--line);
+    display: grid; grid-template-columns: 28px 1fr; gap: 14px; align-items: start;
+    color: var(--ink-2); font-size: 16px; line-height: 1.55;
+  }
+  .pretty-list li:last-child { border-bottom: 1px solid var(--line); }
+  .pretty-list .idx { font-size: 13px; color: var(--ink-3); padding-top: 2px; font-weight: 500; }
+  .pretty-list strong { color: var(--ink); display: block; margin-bottom: 4px; font-size: 16px; font-weight: 500; }
+
+  /* Decision cards */
+  .decision { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; max-width: var(--readw); }
+  .decision .card { border: 1px solid var(--line); border-radius: 12px; padding: 22px; background: var(--bg-2); }
+  .decision .card h4 { font-size: 13px; color: var(--ink-3); margin-bottom: 10px; font-weight: 500; }
+  .decision .card p { font-size: 15px; margin-bottom: 0; }
+  .decision .picked { border-color: var(--accent); background: var(--bg); position: relative; }
+  .decision .picked::before { content: "Chosen"; position: absolute; top: -10px; right: 14px; background: var(--accent); color: var(--bg); padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 500; }
+
+  /* Feature grid */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; max-width: 100%; }
+  .feature { background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px; padding: 22px; position: relative; overflow: hidden; transition: transform 0.2s, border-color 0.2s; }
+  .feature:hover { transform: translateY(-2px); border-color: color-mix(in oklab, var(--accent) 30%, var(--line)); }
+  .feature::before { content: ""; position: absolute; top: 0; left: 0; width: 3px; height: 32px; background: var(--accent); border-radius: 0 3px 3px 0; }
+  .feature:nth-child(2)::before, .feature:nth-child(5)::before { background: var(--accent-2); }
+  .feature:nth-child(3)::before, .feature:nth-child(6)::before { background: var(--accent-3); }
+  .feature .icon { font-size: 24px; margin-bottom: 12px; }
+  .feature h4 { font-family: var(--sans); font-size: 15px; font-weight: 500; margin-bottom: 6px; letter-spacing: -0.015em; }
+  .feature p { font-size: 14px; color: var(--ink-2); margin-bottom: 0; line-height: 1.5; }
+
+  /* Timeline */
+  .timeline { display: flex; flex-direction: column; gap: 0; margin: 24px 0 0; max-width: var(--readw); position: relative; }
+  .timeline::before { content: ""; position: absolute; left: 9px; top: 6px; bottom: 6px; width: 1px; background: var(--line); }
+  .tl-item { display: grid; grid-template-columns: 28px 1fr; gap: 16px; padding: 14px 0; align-items: start; position: relative; }
+  .tl-item .bullet { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--accent); background: var(--bg); margin-top: 4px; z-index: 1; }
+  .tl-item .when { font-size: 12px; color: var(--ink-3); margin-bottom: 4px; font-weight: 500; }
+  .tl-item h4 { font-family: var(--sans); font-size: 15px; font-weight: 500; margin-bottom: 4px; letter-spacing: -0.015em; }
+  .tl-item p { font-size: 14px; margin-bottom: 0; }
+
+  /* Outro */
+  .outro { background: linear-gradient(180deg, var(--bg-2) 0%, color-mix(in oklab, var(--accent-2) 10%, var(--bg-2)) 100%); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 80px 0; margin-top: 32px; position: relative; overflow: hidden; }
+  .outro::before { content: ""; position: absolute; top: -30%; right: -5%; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, color-mix(in oklab, var(--accent) 16%, transparent), transparent 65%); pointer-events: none; filter: blur(20px); }
+  .outro-inner { position: relative; z-index: 1; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); display: grid; grid-template-columns: 180px 1fr; gap: 48px; align-items: start; }
+  .outro h2 { font-family: var(--sans); font-weight: 400; font-size: clamp(32px, 4.5vw, 48px); line-height: 1.05; letter-spacing: -0.035em; max-width: 22ch; margin-bottom: 28px; }
+  .outro h2 em { font-style: normal; color: var(--accent); font-weight: 400; background: linear-gradient(90deg, var(--accent) 0%, color-mix(in oklab, var(--accent) 70%, var(--accent-2)) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; font-size: 14px; font-weight: 500; text-decoration: none; transition: all 0.2s; }
+  .btn-primary { background: var(--ink); color: var(--bg); }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+  .btn-ghost { border: 1px solid var(--ink); color: var(--ink); margin-left: 8px; }
+  .btn-ghost:hover { background: var(--ink); color: var(--bg); }
+
+  footer { max-width: var(--maxw); margin: 0 auto; padding: 32px var(--pad); display: flex; justify-content: space-between; font-size: 13px; color: var(--ink-3); flex-wrap: wrap; gap: 12px; }
+
+  @media (max-width: 880px) {
+    :root { --pad: 20px; }
+    .study-header { padding: 48px var(--pad) 36px; }
+    .study-meta { grid-template-columns: repeat(2, 1fr); gap: 20px; padding-bottom: 36px; }
+    .visual-card { padding: 40px 24px; }
+    .visual-card--split { flex-direction: column; padding: 40px 24px 0; gap: 28px; text-align: left; }
+    .visual-card--split .visual-copy { padding-bottom: 0; align-items: flex-start; }
+    .visual-shot { align-self: center; }
+    .visual-shot img { width: 220px; }
+    .showcase-panel { padding: 28px 20px; }
+    .showcase-row { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .shot-cap .t { font-size: 12px; }
+    .shot-frame { border-radius: 18px; }
+    .body { padding: 48px var(--pad); }
+    .section { grid-template-columns: 1fr; gap: 12px; padding: 32px 0; }
+    .section .label { padding-top: 0; }
+    .decision { grid-template-columns: 1fr; }
+    .features { grid-template-columns: 1fr; }
+    .outro-inner { grid-template-columns: 1fr; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">Z</span>
+      <span>Zubeir Hussein</span>
+    </a>
+    <a class="back" href="index.html">← Back to work</a>
+  </div>
+</nav>
+
+<header class="study-header">
+  <div class="crumb">
+    <span>Case study · 01</span>
+    <span class="sep">/</span>
+    <span>2026 · In progress</span>
+  </div>
+  <h1 class="study-title">StretchSmart.</h1>
+  <p class="study-deck">A simple consumer iPhone app that turns "where it hurts" into the exact stretches you need — in under 60 seconds. Below: why I'm building it, the decisions I've made so far, and what I'm still figuring out.</p>
+  <a class="visit-link" href="https://stretchsmart-landing.vercel.app/" target="_blank" rel="noopener">Visit the landing page ↗</a>
+</header>
+
+<section class="study-meta">
+  <div class="meta-item"><span class="k">Role</span><span class="v">Solo PM &amp; builder</span></div>
+  <div class="meta-item"><span class="k">Status</span><span class="v">Waitlist · iPhone launch</span></div>
+  <div class="meta-item"><span class="k">Focus</span><span class="v">AI · Consumer · Mobile</span></div>
+  <div class="meta-item"><span class="k">Started</span><span class="v">2026</span></div>
+</section>
+
+<section class="hero-visual">
+  <div class="visual-card visual-card--split">
+    <div class="visual-copy">
+      <span class="eyebrow"><span class="leaf">✦</span>Built for real people, not gym pros</span>
+      <h2>Stop guessing.<br/><em>Stretch smarter.</em></h2>
+      <p class="tagline">Tell the app where it hurts. Get the exact stretches you need in under 60 seconds — no YouTube rabbit holes, no guesswork.</p>
+    </div>
+    <div class="visual-shot">
+      <img src="assets/ss-home.png" alt="StretchSmart home screen — Good morning, with this week's progress and today's Posture Reset stretch" />
+    </div>
+  </div>
+</section>
+
+<main class="body">
+
+  <section class="section">
+    <span class="label">§ 01 · Problem</span>
+    <div>
+      <h2>The "I'll start <em>tomorrow</em>" problem.</h2>
+      <p>Most people know stretching helps. They've Googled it, watched a video or two, maybe even bought an app. And then they stop after three days.</p>
+      <p>Reading through threads on r/Fitness, r/bodyweightfitness, and r/flexibility, the same complaints kept coming up: <strong>too much choice, no guidance on what's right for the problem you actually have, and apps that feel built for fitness pros — not regular people with sore backs.</strong></p>
+      <blockquote>
+        "I never know which stretches actually target my problem vs just wasting my time."
+        <cite>r/Fitness</cite>
+      </blockquote>
+      <p>The opportunity I saw: <strong>cut the decision-making out of stretching.</strong> Make the answer to "what should I do right now?" feel obvious.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="label">§ 02 · Audience</span>
+    <div>
+      <h2>Not gym pros. <em>Real people.</em></h2>
+      <p>I deliberately scoped the audience away from the fitness-influencer crowd. StretchSmart is for the person who sits at a desk all day, the parent whose back hurts from picking up kids, the runner who knows they should stretch but never does.</p>
+      <p>That audience choice drove almost every other decision: the tone of the copy, the size of the routines, the fact that there's no "advanced" mode, and the explicit promise on the landing page — <em>"Built for real people, not gym pros."</em></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="label">§ 03 · Strategy</span>
+    <div>
+      <h2>AI as <em>leverage</em>, not the pitch.</h2>
+      <p>There are already plenty of stretch-routine libraries on the App Store. Going head-to-head on content depth wasn't a fight I could win. So I framed the product around a different question: <strong>what can AI do here that a content library structurally can't?</strong></p>
+      <p>The answer was personalisation. A user describing "tight lower back from sitting all day, 5 minutes, beginner" should get a routine built for that — not a generic playlist filtered by tag.</p>
+
+      <div class="decision">
+        <div class="card">
+          <h4>Option A — Content-first app</h4>
+          <p>Curated library of routines, sorted by tag. Cheaper to build. Hard to differentiate against incumbents.</p>
+        </div>
+        <div class="card picked">
+          <h4>Option B — AI routine builder + library</h4>
+          <p>Free, full-access library and AI builder for everyone — then a single subscription once they're hooked. Library proves quality; the AI builder is what people stay for.</p>
+        </div>
+      </div>
+
+      <p>This shaped the pricing too. Rather than splitting features into free vs. paid, I went with a <strong>free 14-day trial of the whole app</strong> — every routine, the AI builder, full tracking — then a single $6.99/month subscription. The bet: let people feel the full value first, and the ones for whom it clicks will happily pay to keep it.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="label">§ 04 · Product</span>
+    <div>
+      <h2>Six features. <em>One promise.</em></h2>
+      <p>I held the feature list back hard for v1. Every feature has to serve a single promise: <strong>"up and stretching in three steps."</strong> Anything that didn't earn its place there got pushed to a later release. Every one of these is included in the free trial and the subscription — no feature gating.</p>
+
+      <div class="features">
+        <div class="feature">
+          <div class="icon">🎯</div>
+          <h4>Targeted library</h4>
+          <p>Routines by problem area — lower back, knees, shoulders, desk posture.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🤖</div>
+          <h4>AI routine builder</h4>
+          <p>Describe your problem in plain English. Get a routine built for you in seconds.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔥</div>
+          <h4>Daily habit tracker</h4>
+          <p>Tick each day. Watch the streak grow. The simplest possible loop.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">⏱️</div>
+          <h4>Guided sessions</h4>
+          <p>Step-by-step illustrations with countdown timers. No thinking required.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔔</div>
+          <h4>Daily reminders</h4>
+          <p>Set your stretch time once. We nudge you gently every day.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📈</div>
+          <h4>Progress dashboard</h4>
+          <p>Longest streak, total minutes, calendar history. Consistency at a glance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="showcase">
+    <div class="showcase-panel">
+      <div class="showcase-head">
+        <span class="label">Inside the app</span>
+        <h3>Three taps from sore to <em>stretched</em>.</h3>
+        <p>The current build, on a real iPhone — a calm daily home, a library you browse by body area, and an AI builder that turns plain English into a tailored routine.</p>
+      </div>
+      <div class="showcase-row">
+        <div class="shot-item">
+          <div class="shot-frame framed"><img src="assets/ss-home.png" alt="StretchSmart home — Good morning, with today's Posture Reset stretch and weekly progress" /></div>
+          <div class="shot-cap"><span class="n">01 · Home</span><span class="t">Today's stretch, ready to begin</span></div>
+        </div>
+        <div class="shot-item">
+          <div class="shot-frame framed"><img src="assets/ss-browse.png" alt="StretchSmart library — Find your fit, with an editor's pick and routines browsable by body area" /></div>
+          <div class="shot-cap"><span class="n">02 · Library</span><span class="t">Find your fit, by body area</span></div>
+        </div>
+        <div class="shot-item">
+          <div class="shot-frame framed"><img src="assets/ss-ai-builder.png" alt="StretchSmart AI builder — describe what you want and it tailors a routine by intention, duration and focus" /></div>
+          <div class="shot-cap"><span class="n">03 · AI builder</span><span class="t">Describe it, get a tailored routine</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="label">§ 05 · Where I am</span>
+    <div>
+      <h2>Pre-launch, <em>building in public</em>.</h2>
+      <p>I'm being honest here: StretchSmart is currently in <strong>waitlist mode</strong>. The landing page is live, early members are signing up, and the iPhone app is in development. There aren't real launch metrics yet, and I'd rather show you my thinking than invent numbers.</p>
+
+      <div class="timeline">
+        <div class="tl-item"><span class="bullet"></span><div><div class="when">Done</div><h4>Problem &amp; audience definition</h4><p>Read through fitness/flexibility subreddits, mapped recurring complaints, defined the "real people, not gym pros" positioning.</p></div></div>
+        <div class="tl-item"><span class="bullet"></span><div><div class="when">Done</div><h4>Landing page &amp; waitlist</h4><p>Shipped a landing page that explains the value in plain English. Currently collecting early members.</p></div></div>
+        <div class="tl-item"><span class="bullet"></span><div><div class="when">In progress</div><h4>MVP build</h4><p>iPhone app: library, tracker, timer, reminders, and the AI routine builder. Scoping ruthlessly to ship something small but real.</p></div></div>
+        <div class="tl-item"><span class="bullet"></span><div><div class="when">Next</div><h4>Closed beta &amp; eval loop</h4><p>Get the AI routine builder in front of 20–30 real users. Set up a simple quality rubric so I can tell when generated routines are good vs. wrong.</p></div></div>
+        <div class="tl-item"><span class="bullet"></span><div><div class="when">Next</div><h4>Public launch</h4><p>App Store launch with a clear 14-day-trial → subscription story. Watch the funnel, learn, iterate.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="label">§ 06 · What I've learned</span>
+    <div>
+      <h2>Three things I'm carrying <em>forward</em>.</h2>
+      <ul class="pretty-list">
+        <li><span class="idx">01</span><div><strong>Audience choice is a product decision.</strong>Saying "real people, not gym pros" out loud changed everything downstream — copy, scope, pricing, what to leave out. The clearer the audience, the easier every other call gets.</div></li>
+        <li><span class="idx">02</span><div><strong>AI is leverage, not the pitch.</strong>"AI-powered" is not a value prop. "Tell us where it hurts, get exactly what you need" is. The model is a means; the relevance is the product.</div></li>
+        <li><span class="idx">03</span><div><strong>Build the smallest honest version.</strong>It's tempting to add features to make a landing page look richer. I cut hard, because every feature is a promise — and one I'd have to deliver on. Better to ship six things well than sixteen things hopefully.</div></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<section class="outro">
+  <div class="outro-inner">
+    <span class="label">Next →</span>
+    <div>
+      <h2>Want to talk <em>product</em>, or hire a PM who builds?</h2>
+      <a class="btn btn-primary" href="index.html#contact">Get in touch <span aria-hidden="true">→</span></a>
+      <a class="btn btn-ghost" href="https://stretchsmart-landing.vercel.app/" target="_blank" rel="noopener">Visit StretchSmart ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Zubeir Hussein</span>
+  <span>StretchSmart · Case Study</span>
+</footer>
+
+</body>
+</html>
